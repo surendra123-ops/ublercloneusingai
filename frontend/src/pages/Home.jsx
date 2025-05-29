@@ -184,7 +184,22 @@ const Home = () => {
 
     }
 
-    async function createRide() {
+    // async function createRide() {
+    //     const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/rides/create`, {
+    //         pickup,
+    //         destination,
+    //         vehicleType
+    //     }, {
+    //         headers: {
+    //             Authorization: `Bearer ${localStorage.getItem('token')}`
+    //         }
+    //     })
+
+
+    // }
+
+
+async function createRide() {
         const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/rides/create`, {
             pickup,
             destination,
@@ -197,6 +212,7 @@ const Home = () => {
 
 
     }
+
 
     return (
         <div className='h-screen relative overflow-hidden'>

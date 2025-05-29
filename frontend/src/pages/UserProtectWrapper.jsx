@@ -3,19 +3,19 @@ import { UserDataContext } from '../context/UserContext'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
-const UserProtectWrapper = ({ children }) => {
+const UserProtectWrapper = ({
+    children
+}) => {
     const token = localStorage.getItem('token')
     const navigate = useNavigate()
     const { user, setUser } = useContext(UserDataContext)
-    const [isLoading, setIsLoading] = useState(true)
+    const [ isLoading, setIsLoading ] = useState(true)
 
     useEffect(() => {
         if (!token) {
             navigate('/login')
-            return
         }
 
-        // Token verification using profile route
         axios.get(`${import.meta.env.VITE_BASE_URL}/users/profile`, {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -25,12 +25,13 @@ const UserProtectWrapper = ({ children }) => {
                 setUser(response.data)
                 setIsLoading(false)
             }
-        }).catch(err => {
-            console.error(err)
-            localStorage.removeItem('token')
-            navigate('/login')
         })
-    }, [token, navigate, setUser])
+            .catch(err => {
+                console.log(err)
+                localStorage.removeItem('token')
+                navigate('/login')
+            })
+    }, [ token ])
 
     if (isLoading) {
         return (

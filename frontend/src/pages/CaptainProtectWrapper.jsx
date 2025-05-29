@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { CaptainDataContext } from "../context/CaptainContext";
-
+import { CaptainDataContext } from '../context/CaptainContext'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
@@ -20,8 +19,6 @@ const CaptainProtectWrapper = ({
         if (!token) {
             navigate('/captain-login')
         }
-        
-        // token verification using profile route
 
         axios.get(`${import.meta.env.VITE_BASE_URL}/captains/profile`, {
             headers: {

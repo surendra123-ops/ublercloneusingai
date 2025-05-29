@@ -17,8 +17,6 @@ module.exports.createRide = async (req, res) => {
         const ride = await rideService.createRide({ user: req.user._id, pickup, destination, vehicleType });
         res.status(201).json(ride);
 
-        // Notify captains about the new ride in their radius while creating the ride user click on he create ride button
-
         const pickupCoordinates = await mapService.getAddressCoordinate(pickup);
 
 
